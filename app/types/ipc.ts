@@ -7,4 +7,9 @@ export enum IpcChannel {
   GongStartPlay = "GONG_START_PLAY",
   SettingsGet = "SETTINGS_GET",
   SettingsSet = "SETTINGS_SET",
+  BreakStart = "BREAK_START",
+  BreakEnd = "BREAK_END",
+  SurveySubmit = "SURVEY_SUBMIT",
+  OpenExternalURL = "OPEN_EXTERNAL_URL",
+  GetProcess = "GET_PROCESS",
 }

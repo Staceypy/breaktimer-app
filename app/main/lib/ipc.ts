@@ -5,7 +5,7 @@ import { IpcChannel } from "../../types/ipc";
 import { getWindows } from "./windows";
 import { getBreakLength, getAllowPostpone, postponeBreak } from "./breaks";
 import { getSettings, setSettings } from "./store";
-
+const { shell } = require("electron");
 export function sendIpc(channel: IpcChannel, ...args: unknown[]): void {
   const windows: BrowserWindow[] = getWindows();
 
@@ -32,12 +32,27 @@ ipcMain.handle(IpcChannel.BreakPostpone, (): void => {
 
 ipcMain.handle(IpcChannel.GongStartPlay, (): void => {
   log.info(IpcChannel.GongStartPlay);
-  sendIpc(IpcChannel.GongStartPlay);
+  // sendIpc(IpcChannel.GongStartPlay);
 });
 
 ipcMain.handle(IpcChannel.GongEndPlay, (): void => {
   log.info(IpcChannel.GongEndPlay);
-  sendIpc(IpcChannel.GongEndPlay);
+  // sendIpc(IpcChannel.GongStartPlay);
+});
+
+ipcMain.handle(IpcChannel.BreakStart, (): void => {
+  log.info(IpcChannel.BreakStart);
+});
+
+ipcMain.handle(IpcChannel.OpenExternalURL, (): void => {
+  log.info(IpcChannel.OpenExternalURL);
+  const url =
+    "https://docs.google.com/forms/d/e/1FAIpQLSd2XSAySQM4lDd2crflbpFYbdLowtnCppSe2YSOIun0qK6vaQ/viewform?usp=sf_link";
+  shell.openExternal(url);
+});
+
+ipcMain.handle(IpcChannel.BreakEnd, (): void => {
+  log.info(IpcChannel.BreakEnd);
 });
 
 ipcMain.handle(IpcChannel.SettingsGet, (): Settings => {
@@ -56,4 +71,11 @@ ipcMain.handle(
 ipcMain.handle(IpcChannel.BreakLengthGet, (): Date => {
   log.info(IpcChannel.BreakLengthGet);
   return getBreakLength();
+});
+
+ipcMain.handle(IpcChannel.GetProcess, (): string => {
+  log.info(IpcChannel.GetProcess);
+  const resourcesPath = process.resourcesPath;
+
+  return resourcesPath;
 });

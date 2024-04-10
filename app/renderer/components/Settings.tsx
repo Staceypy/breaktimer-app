@@ -52,12 +52,12 @@ export default function SettingsEl() {
     return null;
   }
 
-  const handleNotificationTypeChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    const notificationType = e.target.value as NotificationType;
-    setSettingsDraft({ ...settingsDraft, notificationType });
-  };
+  // const _handleNotificationTypeChange = (
+  //   e: React.ChangeEvent<HTMLSelectElement>
+  // ): void => {
+  //   const notificationType = e.target.value as NotificationType;
+  //   setSettingsDraft({ ...settingsDraft, notificationType });
+  // };
 
   const handleDateChange = (field: keyof Settings, newVal: Date): void => {
     setSettingsDraft({
@@ -143,7 +143,7 @@ export default function SettingsEl() {
             title="Break Settings"
             panel={
               <React.Fragment>
-                <FormGroup label="Notify me with">
+                {/* <FormGroup label="Notify me with">
                   <HTMLSelect
                     value={settingsDraft.notificationType}
                     options={[
@@ -159,7 +159,7 @@ export default function SettingsEl() {
                     onChange={handleNotificationTypeChange}
                     disabled={!settingsDraft.breaksEnabled}
                   />
-                </FormGroup>
+                </FormGroup> */}
                 <FormGroup label="Break frequency" labelInfo="(hh:mm:ss)">
                   <TimePicker
                     onChange={handleDateChange.bind(null, "breakFrequency")}
@@ -188,7 +188,7 @@ export default function SettingsEl() {
                   disabled={!settingsDraft.breaksEnabled}
                 />
                 <Switch
-                  label="Allow snooze break"
+                  label="Allow postpone break"
                   checked={settingsDraft.postponeBreakEnabled}
                   onChange={handleSwitchChange.bind(
                     null,
@@ -196,7 +196,7 @@ export default function SettingsEl() {
                   )}
                   disabled={!settingsDraft.breaksEnabled}
                 />
-                <FormGroup label="Snooze length" labelInfo="(hh:mm:ss)">
+                <FormGroup label="postpone length" labelInfo="(hh:mm:ss)">
                   <TimePicker
                     onChange={handleDateChange.bind(null, "postponeLength")}
                     value={new Date(settingsDraft.postponeLength)}
@@ -208,7 +208,7 @@ export default function SettingsEl() {
                     }
                   />
                 </FormGroup>
-                <FormGroup label="Snooze limit">
+                <FormGroup label="Postpone limit">
                   <HTMLSelect
                     value={settingsDraft.postponeLimit}
                     options={[
@@ -226,14 +226,14 @@ export default function SettingsEl() {
                     }
                   />
                 </FormGroup>
-                <Switch
+                {/* <Switch
                   label="Play gong sound on break start/end"
                   checked={settingsDraft.gongEnabled}
                   onChange={handleSwitchChange.bind(null, "gongEnabled")}
                   disabled={!settingsDraft.breaksEnabled}
-                />
+                /> */}
                 <Switch
-                  label="Allow end break"
+                  label="Allow skip break in the middle"
                   checked={settingsDraft.endBreakEnabled}
                   onChange={handleSwitchChange.bind(null, "endBreakEnabled")}
                   disabled={!settingsDraft.breaksEnabled}
@@ -280,7 +280,7 @@ export default function SettingsEl() {
                     disabled={!settingsDraft.breaksEnabled}
                   />
                 </FormGroup>
-                <FormGroup>
+                {/* <FormGroup>
                   <Switch
                     label="Show backdrop"
                     checked={settingsDraft.showBackdrop}
@@ -290,7 +290,7 @@ export default function SettingsEl() {
                       settingsDraft.notificationType !== NotificationType.Popup
                     }
                   />
-                </FormGroup>
+                </FormGroup> */}
                 <FormGroup label="Backdrop color">
                   <InputGroup
                     className={styles.colorPicker}

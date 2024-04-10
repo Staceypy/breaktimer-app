@@ -212,7 +212,8 @@ module.exports = merge.smart(baseConfig, {
     headers: { "Access-Control-Allow-Origin": "*" },
     onBeforeSetupMiddleware: () => {
       if (process.env.START_HOT) {
-        spawn("npm", ["run", "start-main-dev"], { shell: true,
+        spawn("npm", ["run", "start-main-dev"], {
+          shell: true,
           env: process.env,
           stdio: "inherit",
         })

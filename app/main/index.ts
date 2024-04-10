@@ -9,7 +9,7 @@ import {
   setAppInitialized,
   setBreaksEnabled,
 } from "./lib/store";
-import { createSoundsWindow, createSettingsWindow } from "./lib/windows";
+import { createSettingsWindow } from "./lib/windows";
 import { setAutoLauch } from "./lib/auto-launch";
 import { showNotification } from "./lib/notifications";
 import { initTray } from "./lib/tray";
@@ -89,7 +89,7 @@ app.on("ready", async () => {
   if (!appInitialized) {
     setAutoLauch(true);
     showNotification(
-      "BreakTimer runs in the background",
+      "UpTimer runs in the background",
       "The app can be accessed via the system tray",
       undefined,
       false
@@ -99,7 +99,6 @@ app.on("ready", async () => {
 
   initBreaks();
   initTray();
-  createSoundsWindow();
 
   if (process.env.NODE_ENV !== "development" && process.platform !== "win32") {
     checkForUpdates();

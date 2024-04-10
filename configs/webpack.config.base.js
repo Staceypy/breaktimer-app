@@ -6,6 +6,18 @@ const path = require("path");
 const webpack = require("webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
+// const rules = require("./webpack.rules");
+// const CopyWebpackPlugin = require("copy-webpack-plugin");
+// const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+
+// const assets = ["static"];
+// const copyPlugins = new CopyWebpackPlugin({
+//   patterns: assets.map((asset) => ({
+//     from: path.resolve(__dirname, "src", asset),
+//     to: path.resolve(__dirname, ".webpack/renderer", asset),
+//   })),
+// });
+
 module.exports = {
   module: {
     rules: [
@@ -18,6 +30,27 @@ module.exports = {
           target: "es2019",
         },
       },
+      // Loads common image formats
+      {
+        test: /\.(png|jpe?g|svg)$/,
+        loader: "url-loader",
+        options: {
+          // Inline images smaller than 10kb as data URIs
+          limit: 10000,
+        },
+      },
+      // Loads common image formats
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
 
@@ -25,7 +58,8 @@ module.exports = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: [".js", ".ts", ".tsx", ".json"],
+    fallback: { path: require.resolve("path-browserify") },
+    extensions: [".js", ".ts", ".tsx", ".json", ".png"],
   },
 
   plugins: [

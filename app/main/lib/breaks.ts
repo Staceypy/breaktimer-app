@@ -8,6 +8,7 @@ import { getSettings } from "./store";
 import { buildTray } from "./tray";
 import { showNotification } from "./notifications";
 import { createBreakWindows } from "./windows";
+// import { show } from "@blueprintjs/core/lib/esm/components/context-menu/contextMenu";
 
 let powerMonitor: PowerMonitor;
 let breakTime: BreakTime = null;
@@ -77,6 +78,15 @@ function createIdleNotification() {
     );
   }
 }
+
+// function _beforeBreakNotification() {
+//   showNotification("Break reminder", "It's time to take a break!");
+//   const settings: Settings = getSettings();
+//   if (settings.skipBreakEnabled) {
+//   }
+//   if (settings.postponeBreakEnabled) {
+//   }
+// }
 
 export function createBreak(isPostpone = false): void {
   const settings: Settings = getSettings();
@@ -220,7 +230,7 @@ export function checkIdle(): boolean {
     }
   }
 
-  lockStart = null;
+  lockStart = null; // 如果系统的空闲状态不是 Locked（锁定），则将 lockStart 变量重置为 null
 
   if (!settings.idleResetEnabled) {
     return false;

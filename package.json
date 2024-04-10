@@ -36,6 +36,7 @@
       "app/renderer/dist/",
       "app/renderer/sounds/",
       "app/renderer/preload.js",
+      "resources/images/",
       "resources/icon.png",
       "resources/tray/icon.png",
       "resources/tray/tray-iconTemplate.png",
@@ -228,6 +229,7 @@
     "history": "^4.7.2",
     "howler": "^2.2.3",
     "moment": "^2.29.4",
+    "path-browserify": "^1.0.1",
     "react": "^16.7.0",
     "react-ace": "^7.0.2",
     "react-dom": "^16.7.0",
@@ -241,7 +243,7 @@
     "xstate": "^4.25.0"
   },
   "devEngines": {
-    "node": ">=12.x",
-    "npm": ">=4.x"
+    "node": ">=18.x",
+    "npm": ">=10.x"
   }
 }

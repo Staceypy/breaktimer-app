@@ -1,9 +1,9 @@
 import AutoLaunch from "auto-launch";
 
-let app = { name: "BreakTimer" };
+let app = { name: "UpTimer" };
 
 if (process.env.APPIMAGE) {
-  app = Object.assign(app, { path: process.env.APPIMAGE })
+  app = Object.assign(app, { path: process.env.APPIMAGE });
 }
 
 const AppLauncher = new AutoLaunch(app);

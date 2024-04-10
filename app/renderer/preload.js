@@ -11,6 +11,9 @@ const { contextBridge, ipcRenderer } = require("electron");
 process.once("loaded", () => {
   contextBridge.exposeInMainWorld("processEnv", { ...process.env });
   contextBridge.exposeInMainWorld("ipcRenderer", {
+    invokeGetProcess: () => {
+      return ipcRenderer.invoke("GET_PROCESS");
+    },
     invokeBreakPostpone: () => {
       return ipcRenderer.invoke("BREAK_POSTPONE");
     },
@@ -28,6 +31,15 @@ process.once("loaded", () => {
     },
     invokeGongStartPlay: () => {
       return ipcRenderer.invoke("GONG_START_PLAY");
+    },
+    invokeBreakStart: () => {
+      return ipcRenderer.invoke("BREAK_START");
+    },
+    invokeBreakEnd: () => {
+      return ipcRenderer.invoke("BREAK_END");
+    },
+    invokeOpenExternalURL: () => {
+      return ipcRenderer.invoke("OPEN_EXTERNAL_URL");
     },
     invokeSetSettings: (settings) => {
       return ipcRenderer.invoke("SETTINGS_SET", settings);

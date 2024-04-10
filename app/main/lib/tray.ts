@@ -1,6 +1,6 @@
 import path from "path";
 import moment from "moment";
-import { app, dialog, Menu, Tray } from "electron";
+import { app, dialog, Menu, nativeImage, Tray } from "electron";
 import packageJson from "../../../package.json";
 import { Settings } from "../../types/settings";
 import { getSettings, setSettings } from "./store";
@@ -33,7 +33,9 @@ export function buildTray(): void {
           ? "resources/tray/icon.png"
           : path.join(process.resourcesPath, "app/resources/tray/icon.png");
     }
-    tray = new Tray(imgPath);
+    const trayIcon = nativeImage.createFromPath(imgPath);
+
+    tray = new Tray(trayIcon);
 
     // On windows, context menu will not show on left click by default
     if (process.platform === "win32") {

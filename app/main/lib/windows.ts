@@ -1,14 +1,13 @@
 import path from "path";
-import { app, screen, BrowserWindow } from "electron";
+import { app, screen, BrowserWindow, nativeImage } from "electron";
 import log from "electron-log";
 import { endPopupBreak } from "./breaks";
 import { getSettings } from "./store";
 
 let settingsWindow: BrowserWindow | null = null;
-let soundsWindow: BrowserWindow | null = null;
 let breakWindows: BrowserWindow[] = [];
 
-const getBrowserWindowUrl = (page: "settings" | "sounds" | "break"): string => {
+const getBrowserWindowUrl = (page: "settings" | "break"): string => {
   return `file://${path.join(
     __dirname,
     `../views/${process.env.NODE_ENV}.html?page=${page}`
@@ -20,9 +19,7 @@ export function getWindows(): BrowserWindow[] {
   if (settingsWindow !== null) {
     windows.push(settingsWindow);
   }
-  if (soundsWindow !== null) {
-    windows.push(soundsWindow);
-  }
+
   windows.push(...breakWindows);
   return windows;
 }
@@ -32,6 +29,12 @@ export function createSettingsWindow(): void {
     settingsWindow.show();
     return;
   }
+  const imgPath =
+    process.env.NODE_ENV === "development"
+      ? path.join(__dirname, "../../../resources/tray/icon.png")
+      : path.join(process.resourcesPath, "app/resources/tray/icon.png");
+
+  const windowIcon = nativeImage.createFromPath(imgPath);
 
   settingsWindow = new BrowserWindow({
     show: false,
@@ -40,10 +43,7 @@ export function createSettingsWindow(): void {
     height: process.platform === "win32" ? 740 : 700,
     minHeight: process.platform === "win32" ? 740 : 700,
     autoHideMenuBar: true,
-    icon:
-      process.env.NODE_ENV === "development"
-        ? path.join(__dirname, "../../../resources/tray/icon.png")
-        : path.join(process.resourcesPath, "app/resources/tray/icon.png"),
+    icon: windowIcon,
     webPreferences: {
       preload: path.join(__dirname, "../../renderer/preload.js"),
     },
@@ -62,19 +62,6 @@ export function createSettingsWindow(): void {
   settingsWindow.on("closed", () => {
     settingsWindow = null;
   });
-}
-
-export function createSoundsWindow(): void {
-  soundsWindow = new BrowserWindow({
-    show: false,
-    skipTaskbar: true,
-    webPreferences: {
-      devTools: false,
-      preload: path.join(__dirname, "../../renderer/preload.js"),
-    },
-  });
-
-  soundsWindow.loadURL(getBrowserWindowUrl("sounds"));
 }
 
 export function createBreakWindows(): void {
@@ -101,6 +88,32 @@ export function createBreakWindows(): void {
       },
     });
 
+    // for (const display of displays) {
+    //   const size = 900;
+    //   const screenWidth = display.bounds.width;
+    //   const windowWidth = size;
+
+    //   const breakWindow = new BrowserWindow({
+    //     show: false,
+    //     autoHideMenuBar: false,
+    //     frame: true,
+    //     x: screenWidth - windowWidth - 50, // 屏幕右边留 50 的空隙
+    //     y: 50, // 屏幕上边留 50 的空隙
+
+    //     // x: display.bounds.x + display.bounds.width / 2 - size / 2,
+    //     // y: display.bounds.y + display.bounds.height / 2 - size / 2,
+    //     width: size,
+    //     height: size,
+    //     focusable: true,
+    //     resizable: true,
+    //     transparent: false,
+    //     hasShadow: false,
+    //     webPreferences: {
+    //       devTools: true,
+    //       preload: path.join(__dirname, "../../renderer/preload.js"),
+    //     },
+    //   });
+
     breakWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
     breakWindow.setAlwaysOnTop(true);
     breakWindow.setFullScreenable(false);
@@ -118,10 +131,19 @@ export function createBreakWindows(): void {
       if (!breakWindow) {
         throw new Error('"breakWindow" is not defined');
       }
+      // breakWindow.webContents.openDevTools({ mode: "detach" });
 
       if (settings.showBackdrop) {
-        breakWindow.setSize(display.bounds.width, display.bounds.height);
-        breakWindow.setPosition(display.bounds.x, display.bounds.y);
+        // breakWindow.setSize(display.bounds.width, display.bounds.height);
+        // breakWindow.setPosition(display.bounds.x, display.bounds.y);
+
+        const gap = 20; // 间隙大小
+        const newX = display.bounds.x + gap; // 在 x 轴上向右移动
+        const newY = display.bounds.y + gap; // 在 y 轴上向下移动
+        const newWidth = display.bounds.width - 2 * gap; // 宽度减去左右间隙
+        const newHeight = display.bounds.height - 2 * gap; // 高度减去上下间隙
+        breakWindow.setSize(newWidth, newHeight); // 设置新的窗口大小
+        breakWindow.setPosition(newX, newY); // 设置新的窗口位置
       }
 
       // Show as inactive to avoid stealing focus
