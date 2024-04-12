@@ -61,11 +61,20 @@ interface ImageComponentProps {
   textColor: string;
   backgroundColor: string;
   processEnv: string;
+  breakEnd: boolean;
 }
 const ImageComponent = (props: ImageComponentProps) => {
-  const { textColor, backgroundColor, processEnv } = props;
+  const { textColor, backgroundColor, processEnv, breakEnd } = props;
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+  const [visitedShortIndices, setVisitedShortIndices] = React.useState<
+    number[]
+  >([]);
+  const [visitedLongIndices, setVisitedLongIndices] = React.useState<number[]>(
+    []
+  );
   const processEnvSlash = processEnv.replace(/\\/g, "/");
+  const shortNum = 15;
+  const longNum = 14;
 
   const imagesData: ImageData[] = [
     {
@@ -122,12 +131,12 @@ const ImageComponent = (props: ImageComponentProps) => {
     },
     {
       id: 11,
-      url: `${processEnvSlash}/app/resources/images/energy_boost.png`,
+      url: `${processEnvSlash}/app/resources/images/neck.png`,
       type: "short",
     },
     {
       id: 12,
-      url: `${processEnvSlash}/app/resources/images/basics.png`,
+      url: `${processEnvSlash}/app/resources/images/warm_up.png`,
       type: "short",
     },
     {
@@ -135,25 +144,22 @@ const ImageComponent = (props: ImageComponentProps) => {
       url: `${processEnvSlash}/app/resources/images/lower_back.png`,
       type: "short",
     },
+
     {
       id: 14,
-      url: `${processEnvSlash}/app/resources/images/office_circuit.png`,
-      type: "short",
-    },
-    {
-      id: 15,
       url: `${processEnvSlash}/app/resources/images/back_pain.png`,
       type: "short",
     },
     {
-      id: 16,
+      id: 15,
       url: `${processEnvSlash}/app/resources/images/back_pain_chair.png`,
       type: "short",
     },
+
     {
       id: 17,
-      url: `${processEnvSlash}/app/resources/images/below_zero.png`,
-      type: "short",
+      url: `${processEnvSlash}/app/resources/images/office_circuit.png`,
+      type: "long",
     },
     {
       id: 18,
@@ -207,31 +213,76 @@ const ImageComponent = (props: ImageComponentProps) => {
       url: `${processEnvSlash}/app/resources/images/cardio_simple.png`,
       type: "long",
     },
+    {
+      id: 28,
+      url: `${processEnvSlash}/app/resources/images/energy_boost.png`,
+      type: "short",
+    },
+    {
+      id: 29,
+      url: `${processEnvSlash}/app/resources/images/basics.png`,
+      type: "short",
+    },
+    {
+      id: 30,
+      url: `${processEnvSlash}/app/resources/images/frost.png`,
+      type: "short",
+    },
   ];
-  // shortImages.length = 17, 0 - 16
-  const initialShortIndex = Math.floor(Math.random() * 17);
+  // shortImages.length = 15 n,  [0,n-1], [0,14]
 
   React.useEffect(() => {
-    setCurrentImageIndex(initialShortIndex);
-  }, [initialShortIndex]);
+    if (breakEnd) {
+      setCurrentImageIndex((c) => c);
+    } else {
+      const initialShortIndex = Math.floor(Math.random() * shortNum);
+      setCurrentImageIndex(initialShortIndex);
+      setVisitedShortIndices([initialShortIndex]);
+    }
+  }, [breakEnd]);
 
   const switchToNextShortImage = () => {
     let nextShortIndex;
-    do {
-      nextShortIndex = Math.floor(Math.random() * 17);
-    } while (nextShortIndex === currentImageIndex);
-
-    setCurrentImageIndex(nextShortIndex);
+    if (visitedShortIndices.length === shortNum) {
+      // Reset visitedShortIndices if all indices have been visited
+      setVisitedShortIndices([]);
+      nextShortIndex = Math.floor(Math.random() * shortNum);
+      setCurrentImageIndex(nextShortIndex);
+      setVisitedShortIndices([nextShortIndex]);
+    } else {
+      // Generate a new random index that hasn't been visited
+      do {
+        nextShortIndex = Math.floor(Math.random() * shortNum);
+      } while (visitedShortIndices.includes(nextShortIndex));
+      // Update current image index and visited indices
+      setCurrentImageIndex(nextShortIndex);
+      setVisitedShortIndices([...visitedShortIndices, nextShortIndex]);
+    }
   };
 
   const switchToNextLongImage = () => {
-    // longImages.length = 10, 17 - 26
+    // longImages.length = 14, [0,13] index = 15 -
     let nextLongIndex;
-    do {
-      nextLongIndex = Math.floor(Math.random() * 10) + 17;
-    } while (nextLongIndex === currentImageIndex);
-
-    setCurrentImageIndex(nextLongIndex);
+    if (visitedLongIndices.length === 0) {
+      nextLongIndex = Math.floor(Math.random() * longNum) + shortNum;
+      setCurrentImageIndex(nextLongIndex);
+      setVisitedLongIndices([nextLongIndex]);
+    }
+    if (visitedLongIndices.length === longNum) {
+      // Reset visitedShortIndices if all indices have been visited
+      setVisitedLongIndices([]);
+      nextLongIndex = Math.floor(Math.random() * longNum) + shortNum;
+      setCurrentImageIndex(nextLongIndex);
+      setVisitedLongIndices([nextLongIndex]);
+    } else {
+      // Generate a new random index that hasn't been visited
+      do {
+        nextLongIndex = Math.floor(Math.random() * longNum) + shortNum;
+      } while (visitedLongIndices.includes(nextLongIndex));
+      // Update current image index and visited indices
+      setCurrentImageIndex(nextLongIndex);
+      setVisitedLongIndices([...visitedLongIndices, nextLongIndex]);
+    }
   };
 
   return (
@@ -615,8 +666,6 @@ export default function Break() {
   if (processEnv === null) {
     console.log("processEnv is null");
     return null;
-  } else {
-    console.log(processEnv);
   }
 
   return (
@@ -635,6 +684,7 @@ export default function Break() {
             textColor={settings.textColor}
             backgroundColor={settings.backgroundColor}
             processEnv={processEnv}
+            breakEnd={breakEnding}
           />
         )}
 

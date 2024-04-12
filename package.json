@@ -113,7 +113,7 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "tom-james-watson",
+      "owner": "Staceypy",
       "repo": "breaktimer-app",
       "private": false
     },
@@ -121,13 +121,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/tom-james-watson/breaktimer-app.git"
+    "url": "https://github.com/Staceypy/breaktimer-app.git"
   },
   "bugs": {
-    "url": "https://github.com/tom-james-watson/breaktimer-app/issues"
+    "url": "https://github.com/Staceypy/breaktimer-app/issues"
   },
-  "author": "Tom Watson <tom@tomjwatson.com>",
-  "homepage": "https://github.com/tom-james-watson/breaktimer-app",
+  "author": "Yu Pei (https://github.com/Staceypy)",
+  "homepage": "https://github.com/Staceypy/breaktimer-app",
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
