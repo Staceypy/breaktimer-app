@@ -12,7 +12,7 @@ BreakTimer allows you to customize:
 
 ## Installation
 
-- **Windows** - [BreakTimer.exe](https://github.com/tom-james-watson/breaktimer-app/releases/latest/download/BreakTimer.exe) (unsigned - you may receive a warning on install, press more info -> run anyway)
+- **Windows** - [BreakTimer.exe](https://github.com/Staceypy/breaktimer-app/releases/download/v1.3.0/BreakTimer.exe) (unsigned - you may receive a warning on install, press more info -> run anyway)
 
 ## Usage Guide
 
@@ -46,7 +46,7 @@ Windows: `C:\Users\<USERNAME>\AppData\Roaming\BreakTimer`
 
 This software is built upon the amazing open-source work of the Breaktimer app by Tom James: https://github.com/tom-james-watson/breaktimer-app. You can check their software available for macOS, Windows and Linux here: https://breaktimer.app/.
 
-The workout images displayed during break sessions are downloaded from https://darebee.com/paperbacks.html.
+The 34 workout images displayed during break sessions are downloaded from https://darebee.com/paperbacks.html.
 
 This project is for my research on understanding and reducing knowledge workers' sedentary behavior.
 
