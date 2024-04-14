@@ -73,8 +73,8 @@ const ImageComponent = (props: ImageComponentProps) => {
     []
   );
   const processEnvSlash = processEnv.replace(/\\/g, "/");
-  const shortNum = 15;
-  const longNum = 14;
+  const shortNum = 21;
+  const longNum = 13;
 
   const imagesData: ImageData[] = [
     {
@@ -136,7 +136,7 @@ const ImageComponent = (props: ImageComponentProps) => {
     },
     {
       id: 12,
-      url: `${processEnvSlash}/app/resources/images/warm_up.png`,
+      url: `${processEnvSlash}/app/resources/images/warmup.png`,
       type: "short",
     },
     {
@@ -155,34 +155,60 @@ const ImageComponent = (props: ImageComponentProps) => {
       url: `${processEnvSlash}/app/resources/images/back_pain_chair.png`,
       type: "short",
     },
-
+    {
+      id: 16,
+      url: `${processEnvSlash}/app/resources/images/breathe.png`,
+      type: "short",
+    },
     {
       id: 17,
+      url: `${processEnvSlash}/app/resources/images/eye.png`,
+      type: "short",
+    },
+    {
+      id: 18,
+      url: `${processEnvSlash}/app/resources/images/fix.png`,
+      type: "short",
+    },
+    {
+      id: 19,
+      url: `${processEnvSlash}/app/resources/images/reset.png`,
+      type: "short",
+    },
+    {
+      id: 20,
+      url: `${processEnvSlash}/app/resources/images/stretched.png`,
+      type: "short",
+    },
+    {
+      id: 21,
+      url: `${processEnvSlash}/app/resources/images/wrist.png`,
+      type: "short",
+    },
+
+    {
+      id: 18,
       url: `${processEnvSlash}/app/resources/images/office_circuit.png`,
       type: "long",
     },
     {
-      id: 18,
+      id: 19,
       url: `${processEnvSlash}/app/resources/images/best_thing.png`,
 
       type: "long",
     },
     {
-      id: 19,
+      id: 20,
       url: `${processEnvSlash}/app/resources/images/cardio_fusion.png`,
 
       type: "long",
     },
     {
-      id: 20,
-      url: `${processEnvSlash}/app/resources/images/healer.png`,
-      type: "long",
-    },
-    {
       id: 21,
-      url: `${processEnvSlash}/app/resources/images/ace.png`,
+      url: `${processEnvSlash}/app/resources/images/time_of_my_life.png`,
       type: "long",
     },
+
     {
       id: 22,
       url: `${processEnvSlash}/app/resources/images/cardio_grind.png`,
@@ -200,7 +226,7 @@ const ImageComponent = (props: ImageComponentProps) => {
     },
     {
       id: 25,
-      url: `${processEnvSlash}/app/resources/images/cookie.png`,
+      url: `${processEnvSlash}/app/resources/images/world_breaker.png`,
       type: "long",
     },
     {
@@ -210,23 +236,23 @@ const ImageComponent = (props: ImageComponentProps) => {
     },
     {
       id: 27,
-      url: `${processEnvSlash}/app/resources/images/cardio_simple.png`,
+      url: `${processEnvSlash}/app/resources/images/standing_core.png`,
       type: "long",
     },
     {
       id: 28,
       url: `${processEnvSlash}/app/resources/images/energy_boost.png`,
-      type: "short",
+      type: "long",
     },
     {
       id: 29,
-      url: `${processEnvSlash}/app/resources/images/basics.png`,
-      type: "short",
+      url: `${processEnvSlash}/app/resources/images/standing_abs.png`,
+      type: "long",
     },
     {
       id: 30,
-      url: `${processEnvSlash}/app/resources/images/frost.png`,
-      type: "short",
+      url: `${processEnvSlash}/app/resources/images/full.png`, // frost
+      type: "long",
     },
   ];
   // shortImages.length = 15 n,  [0,n-1], [0,14]
@@ -321,7 +347,7 @@ const ImageComponent = (props: ImageComponentProps) => {
           }}
           outlined
         >
-          Try a 7-minute workout
+          Try A Quick Workout
         </Button>
       </animated.div>
     </animated.div>

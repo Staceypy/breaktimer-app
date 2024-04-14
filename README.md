@@ -22,9 +22,9 @@ After installation, the app starts running in the background. You can easily acc
 
 ## Screenshots
 
-## ![break panel](screenshots/break.png)
+## ![break panel](screenshots/break_progress.png)
 
-## <img src="screenshots/settings.png" alt="settings panel" style="zoom:70%;" />
+## <img src="screenshots/setting.png" alt="settings panel" style="zoom:70%;" />
 
 ## <img src="screenshots/break_notification.png" alt="notification" style="zoom:50%;" />
 
@@ -45,6 +45,8 @@ Windows: `C:\Users\<USERNAME>\AppData\Roaming\BreakTimer`
 ## Reference/ Credit
 
 This software is built upon the amazing open-source work of the Breaktimer app by Tom James: https://github.com/tom-james-watson/breaktimer-app. You can check their software available for macOS, Windows and Linux here: https://breaktimer.app/.
+
+The workout images displayed during break sessions are downloaded from https://darebee.com/paperbacks.html.
 
 This project is for my research on understanding and reducing knowledge workers' sedentary behavior.
 

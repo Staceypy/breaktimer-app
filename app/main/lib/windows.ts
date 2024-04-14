@@ -138,10 +138,10 @@ export function createBreakWindows(): void {
         // breakWindow.setPosition(display.bounds.x, display.bounds.y);
 
         const gap = 20; // 间隙大小
-        const newX = display.bounds.x + gap; // 在 x 轴上向右移动
-        const newY = display.bounds.y + gap; // 在 y 轴上向下移动
-        const newWidth = display.bounds.width - 2 * gap; // 宽度减去左右间隙
-        const newHeight = display.bounds.height - 2 * gap; // 高度减去上下间隙
+        const newX = display.bounds.x; // 在 x 轴上向右移动
+        const newY = display.bounds.y; // 在 y 轴上向下移动
+        const newWidth = display.bounds.width; // 宽度减去左右间隙
+        const newHeight = display.bounds.height - gap; // 高度减去上下间隙
         breakWindow.setSize(newWidth, newHeight); // 设置新的窗口大小
         breakWindow.setPosition(newX, newY); // 设置新的窗口位置
       }
