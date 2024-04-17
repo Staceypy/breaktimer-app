@@ -12,7 +12,7 @@ BreakTimer allows you to customize:
 
 ## Installation
 
-- **Windows** - [BreakTimer.exe](https://github.com/Staceypy/breaktimer-app/releases/download/v1.3.0/BreakTimer.exe) (unsigned - you may receive a warning on install, press more info -> run anyway)
+- **Windows** - [BreakTimer.exe](https://github.com/Staceypy/breaktimer-app/releases/download/v1.3.1/BreakTimer.exe) (unsigned - you may receive a warning on install, press more info -> run anyway)
 
 ## Usage Guide
 
