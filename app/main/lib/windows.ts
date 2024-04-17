@@ -69,7 +69,7 @@ export function createBreakWindows(): void {
 
   const displays = screen.getAllDisplays();
   for (const display of displays) {
-    const size = 400;
+    const size = 900;
     const breakWindow = new BrowserWindow({
       show: false,
       autoHideMenuBar: true,
@@ -131,23 +131,27 @@ export function createBreakWindows(): void {
       if (!breakWindow) {
         throw new Error('"breakWindow" is not defined');
       }
-      // breakWindow.webContents.openDevTools({ mode: "detach" });
+      //breakWindow.webContents.openDevTools({ mode: "detach" });
 
       if (settings.showBackdrop) {
-        // breakWindow.setSize(display.bounds.width, display.bounds.height);
-        // breakWindow.setPosition(display.bounds.x, display.bounds.y);
+        // if (process.platform === "darwin") {
+        // } else {
+        //   // breakWindow.setSize(display.bounds.width, display.bounds.height);
+        //   // breakWindow.setPosition(display.bounds.x, display.bounds.y);
+        //   console.log(screen.getPrimaryDisplay().workAreaSize);
+        //   breakWindow.setSize(screen.getPrimaryDisplay().workAreaSize.width, s); // 设置新的窗口大小  }
 
         const gap = 20; // 间隙大小
-        const newX = display.bounds.x; // 在 x 轴上向右移动
+        const newX = display.bounds.x + 20; // 在 x 轴上向右移动
         const newY = display.bounds.y; // 在 y 轴上向下移动
-        const newWidth = display.bounds.width; // 宽度减去左右间隙
+        // const newWidth = display.bounds.width; // 宽度减去左右间隙
         const newHeight = display.bounds.height - gap; // 高度减去上下间隙
-        breakWindow.setSize(newWidth, newHeight); // 设置新的窗口大小
+        breakWindow.setSize(display.bounds.width, newHeight); // 设置新的窗口大小
         breakWindow.setPosition(newX, newY); // 设置新的窗口位置
-      }
 
-      // Show as inactive to avoid stealing focus
-      breakWindow.showInactive();
+        // Show as inactive to avoid stealing focus
+        breakWindow.showInactive();
+      }
     });
 
     breakWindow.on("closed", () => {
