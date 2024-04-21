@@ -12,11 +12,20 @@ BreakTimer allows you to customize:
 
 ## Installation
 
-- **Windows** - [BreakTimer App](https://github.com/Staceypy/breaktimer-app/releases/download/v1.3.0/breaktimer-app.zip) (unsigned - you may receive a warning on install, press more info -> run anyway)
+- **Windows** - [BreakTimer App](https://github.com/Staceypy/breaktimer-app/releases/download/v1.3.1/BreakTimer.exe) (unsigned - you may receive a warning on install, press more info -> run anyway)
 
 1. Download and Unzip: Download the file `breaktimer-app.zip` and unzip it.
 2. Navigate to the `release` folder inside
 3. Double-click the file named `BreakTimer.exe`. This will install the BreakTimer app.
+
+- **MacOS** - [BreakTimer App](https://github.com/Staceypy/breaktimer-app/releases/download/v1.3.1/BreakTimer.dmg) (unsigned - you may receive a warning on install, please allow installing)
+
+1. Open `Applications` in Finder.
+2. Download the file `BreakTimer.dmg`.
+3. Once you've downloaded the BreakTimer file, double-click it to open the dmg file. Drag and drop the icon with name `BreakTimer` into `Applications` folder (See the following image). This will install the BreakTimer app on your Mac.
+4. To Run: Double-click the installed `BreakTimer` in `Applications`, it will appear in your top menu bar as a running application (indicated by its icon). As default, BreakTimer is set to automatically launch when you start your Mac.
+
+<img src="screenshots/drag.png" alt="notification" style="zoom:50%;" />
 
 ## Usage Guide
 

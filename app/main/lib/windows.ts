@@ -141,7 +141,7 @@ export function createBreakWindows(): void {
         //   console.log(screen.getPrimaryDisplay().workAreaSize);
         //   breakWindow.setSize(screen.getPrimaryDisplay().workAreaSize.width, s); // 设置新的窗口大小  }
 
-        const gap = 20; // 间隙大小
+        const gap = 50; // 间隙大小
         const newX = display.bounds.x + 20; // 在 x 轴上向右移动
         const newY = display.bounds.y; // 在 y 轴上向下移动
         // const newWidth = display.bounds.width; // 宽度减去左右间隙
